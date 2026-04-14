@@ -1,0 +1,41 @@
+<html>
+
+<body>
+    <h1>Funciones en JavaScript</h1>
+
+    <script>
+        function sumar(a, b) {
+            return a + b;
+        }
+
+        function restar(a, b) {
+            return a - b;
+        }
+
+        function inicio(operacion) {
+            const resultado = operacion
+            document.writeln(`El resultado es ${resultado}`);
+        }
+        
+        function convertir(id) {
+            const datos = document.getElementById(id)
+            const dato = Number(datos.value)
+            
+            if (!isNaN(dato)) {
+                const datoDoble = dato * 2
+                return datoDoble
+            } else {
+                return "que el dato no es un número válido."
+            }
+        }
+
+    </script>
+
+    <input type="button" value="Sumar" onclick="inicio(sumar(2, 3))" />
+    <input type="button" value="Restar" onclick="inicio(restar(5, 2))" />
+    <br><br><input type="text" id="Datos_introducidos" placeholder="Introduce un valor" />
+    <input type="button" value="Enviar" onclick="inicio(convertir('Datos_introducidos'))"/>
+
+</body>
+
+</html>

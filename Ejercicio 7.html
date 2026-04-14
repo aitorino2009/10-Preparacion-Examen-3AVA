@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Gasto de Bombillas</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+            background-color: #f4f4f9;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #resultado {
+            margin-top: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h3>Calculadora de Consumo</h3>
+
+        <label>Número de bombillas:</label>
+        <input type="number" id="cantidad" placeholder="Ej: 5">
+
+        <label>Watios (W) por bombilla:</label>
+        <input type="number" id="watios" placeholder="Ej: 10">
+
+        <label>Horas de uso al día:</label>
+        <input type="number" id="horas" placeholder="Ej: 4" value="4">
+
+        <button onclick="calcularGasto()">Calcular Gasto Mensual</button>
+
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularGasto() {
+            // 1. Obtener valores
+            const n = document.getElementById('cantidad').value;
+            const w = document.getElementById('watios').value;
+            const h = document.getElementById('horas').value;
+
+            // Precio medio estimado por kWh (ajustable)
+            const precioKwh = 0.15;
+
+            if (n > 0 && w > 0 && h > 0) {
+                // 2. Fórmula matemática
+                // Watts * cantidad * horas * 30 días / 1000 (para pasar a kWh)
+                const kwhMes = (w * n * h * 30) / 1000;
+                const gastoTotal = kwhMes * precioKwh;
+
+                // 3. Mostrar resultado
+                document.getElementById('resultado').innerHTML =
+                    `Consumo mensual: ${kwhMes.toFixed(2)} kWh <br>` +
+                    `Coste estimado: ${gastoTotal.toFixed(2)} €`;
+            } else {
+                alert("Por favor, introduce valores válidos.");
+            }
+        }
+    </script>
+
+</body>
+
+</html>

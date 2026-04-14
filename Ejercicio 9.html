@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autoescuela Express - Práctica</title>
+
+    <style>
+        /* ESTILOS (CSS) */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+        }
+
+        h1 {
+            color: #2c3e50;
+            font-size: 1.5rem;
+        }
+
+        .pregunta {
+            color: #555;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .opciones {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        button {
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            background-color: #fff;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background-color: #f0f0f0;
+            border-color: #bbb;
+        }
+
+        /* Clases para el feedback */
+        .correcto {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #27ae60;
+            color: white;
+            border-radius: 6px;
+            font-weight: bold;
+            animation: fadeIn 0.5s;
+        }
+
+        .error {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #c0392b;
+            color: white;
+            border-radius: 6px;
+            font-weight: bold;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>🚗 Test de Conducir</h1>
+        <p class="pregunta">¿Qué indica una luz amarilla no intermitente en un semáforo?</p>
+
+        <div class="opciones">
+            <button onclick="main(1)">A) Que puedo acelerar para pasar.</button>
+            <button onclick="main(2)">B) Que debo detenerme, si puedo hacerlo con seguridad.</button>
+            <button onclick="main(3)">C) Que el semáforo está averiado.</button>
+        </div>
+
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        /* LÓGICA (JavaScript) */
+
+        /**
+         * Función pura: Comprueba si la lógica es correcta
+         * @param {number} opcion 
+         * @returns {boolean}
+         */
+        function comprobarRespuesta(opcion) {
+            const RESPUESTA_GANADORA = 2; // La opción B es la correcta
+            return opcion === RESPUESTA_GANADORA;
+        }
+
+        /**
+         * Función Main: Gestiona la interacción y el DOM
+         * @param {number} idBoton 
+         */
+        function main(idBoton) {
+            const display = document.getElementById("resultado");
+            const esCorrecta = comprobarRespuesta(idBoton);
+
+            if (esCorrecta) {
+                display.textContent = "✅ ¡Correcto! Debes detenerte como si fuera una luz roja.";
+                display.className = "correcto";
+            } else {
+                display.textContent = "❌ Incorrecto. Inténtalo de nuevo.";
+                display.className = "error";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

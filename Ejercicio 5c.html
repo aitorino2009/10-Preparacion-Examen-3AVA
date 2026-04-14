@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Máquina de cobrar</title>
+
+    <style>
+        /* Estilos modernos */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        form {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        input[type="text"] {
+            width: 80%;
+            padding: 10px;
+            margin: 15px 0;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input[type="text"]:focus {
+            border-color: #007bff;
+        }
+
+        input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+
+        #salida {
+            margin-top: 20px;
+            padding: 15px;
+            width: 300px;
+            text-align: center;
+            background: #e9ecef;
+            border-radius: 8px;
+            color: #333;
+            font-weight: 500;
+        }
+    </style>
+
+    <script>
+        function comprobar(dato) {
+            const edad = Number(dato)
+            const resultado = (edad > 65) ? 1 : 2.5
+            return resultado
+        }
+
+        function verPantalla(valor) {
+            // Se ha añadido un pequeño estilo extra al texto del resultado
+            salida.innerHTML += (`<div style="border-bottom: 1px solid #ccc; padding: 5px;">El precio es <strong>${valor}€</strong></div>`);
+        }
+
+        function inicio(dato) {
+            const precio = comprobar(dato)
+            verPantalla(precio)
+        }
+    </script>
+</head>
+
+<body>
+    <form name="formu_votacion">
+        <label style="display: block; font-weight: bold;">Introduce tu edad:</label>
+        <input type="text" name="entrada" placeholder="Ej. 25" />
+        <br>
+        <input type="button" value="Calcular Precio" onclick="inicio(entrada.value)" />
+    </form>
+
+    <div id="salida"></div>
+</body>
+
+</html>

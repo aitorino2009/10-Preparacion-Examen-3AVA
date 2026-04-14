@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máquina de votar</title>
+</head>
+
+<script>
+    function comprovar(edad) {
+        if (edad >= 18) {
+            return 'Puedes votar porque sí eres mayor de edad'
+        } else {
+            return 'No puedes votar, eres menor de edad'
+        }
+    }
+
+    function inicio(dato) {
+        const edad = Number(dato)
+        if (!isNaN(edad)) {
+            resultado = comprovar(edad)
+        } else {
+            resultado = 'No has introducido un número válido'
+        }
+        const residente = prompt('¿Vives en Palma? (Escribe "Sí" o "No")')
+        if (residente == "Sí") {
+            document.writeln(resultado)
+        } else {
+            document.writeln('No puedes votar, porque no eres residente de Palma.')
+        }
+
+    }
+</script>
+
+<body>
+    <h1>Máquina de votar</h1>
+    <form name="formulario_votar">
+        Introduce tu edad: <input type="text" placeholder="En esta caja" name="entrada">
+        <input type="button" value="Comprobar" onclick="inicio(entrada.value)">
+    </form>
+</body>
+</html>

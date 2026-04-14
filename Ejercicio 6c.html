@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Máquina de votar - Sede Electrónica</title>
+
+    <style>
+        /* Estilos estilo Administración Pública */
+        :root {
+            --rojo-estado: #aa1916;
+            /* Granate oficial */
+            --azul-estado: #00447b;
+            --gris-fondo: #f4f4f4;
+            --gris-borde: #cccccc;
+        }
+
+        body {
+            font-family: "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--gris-fondo);
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #333;
+        }
+
+        /* Cabecera simulando Gobierno de España */
+        header {
+            width: 100%;
+            background-color: white;
+            border-bottom: 4px solid var(--rojo-estado);
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            margin: 0;
+            color: var(--azul-estado);
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Contenedor principal */
+        .container {
+            background-color: white;
+            padding: 40px;
+            border: 1px solid var(--gris-borde);
+            border-radius: 4px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            max-width: 500px;
+            width: 90%;
+        }
+
+        p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+
+        /* Estilos de formulario */
+        input[type="text"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0 25px 0;
+            border: 1px solid #777;
+            border-radius: 0;
+            /* Estilo sobrio cuadrado */
+            box-sizing: border-box;
+            font-size: 1rem;
+        }
+
+        input[type="text"]:focus {
+            outline: 2px solid var(--azul-estado);
+        }
+
+        input[type="button"] {
+            background-color: var(--azul-estado);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        input[type="button"]:hover {
+            background-color: var(--rojo-estado);
+        }
+
+        /* Pie de página */
+        footer {
+            margin-top: 50px;
+            font-size: 0.8rem;
+            color: #777;
+        }
+    </style>
+
+    <script>
+        function comprovar(edad) {
+            if (edad >= 18) {
+                return 'Usted cumple con la mayoría de edad necesaria para ejercer su derecho al voto.'
+            } else {
+                return 'No tiene la edad mínima requerida para participar en este proceso.'
+            }
+        }
+
+        function inicio(dato) {
+            const edad = Number(dato)
+            let resultado;
+            if (!isNaN(edad) && dato !== "") {
+                resultado = comprovar(edad)
+            } else {
+                resultado = 'Error: Los datos introducidos no tienen un formato válido.'
+            }
+
+            const residente = prompt('¿Es usted residente en el municipio de Palma? (Sí/No)')
+
+            // Reemplazamos el document.writeln para no perder el diseño bonito
+            if (residente && residente.toLowerCase() === "sí") {
+                alert(resultado);
+            } else {
+                alert('Acceso denegado: No consta residencia en Palma.');
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <header>
+        <h1>Sede Electrónica - Censo Electoral</h1>
+    </header>
+
+    <div class="container">
+        <p>Bienvenido al sistema de verificación de requisitos para el sufragio.</p>
+
+        <form name="formulario_votar">
+            <label for="edad" style="font-weight: bold;">Introduzca su edad biológica:</label>
+            <input type="text" id="edad" placeholder="Ejemplo: 25" name="entrada">
+            <input type="button" value="Comprobar Requisitos" onclick="inicio(entrada.value)">
+        </form>
+    </div>
+
+    <footer>
+        © 2026 Sistema Nacional de Verificación de Datos.
+    </footer>
+</body>
+
+</html>

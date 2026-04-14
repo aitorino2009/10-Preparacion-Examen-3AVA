@@ -1,0 +1,1 @@
+Comprueba la edad introducida y si eres mayor de 65 años te indica 1 euro. Si no, 2,5 euros.
